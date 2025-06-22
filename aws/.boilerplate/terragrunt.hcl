@@ -20,14 +20,14 @@ locals {
 }
 
 inputs = {
-  name = "{{ .Vars.name }}"
-  cidr = "{{ .Vars.cidr }}"
+  name = "{{ .name }}"
+  cidr = "{{ .cidr }}"
 
   azs                = local.azs
-  enable_nat_gateway = {{ .Vars.enable_nat_gateway }}
-  single_nat_gateway = {{ .Vars.single_nat_gateway }}
+  enable_nat_gateway = {{ .enable_nat_gateway }}
+  single_nat_gateway = {{ .single_nat_gateway }}
 
-  private_subnets = [for k in range(0, length(local.azs)) : cidrsubnet("{{ .Vars.cidr }}", 8, k + 8)]
-  public_subnets  = [for k in range(0, length(local.azs)) : cidrsubnet("{{ .Vars.cidr }}", 12, k + 8)]
-  intra_subnets   = [for k in range(0, length(local.azs)) : cidrsubnet("{{ .Vars.cidr }}", 8, k + 12)]
+  private_subnets = [for k in range(0, length(local.azs)) : cidrsubnet("{{ .cidr }}", 8, k + 8)]
+  public_subnets  = [for k in range(0, length(local.azs)) : cidrsubnet("{{ .cidr }}", 12, k + 8)]
+  intra_subnets   = [for k in range(0, length(local.azs)) : cidrsubnet("{{ .cidr }}", 8, k + 12)]
 }

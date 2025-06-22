@@ -2,3 +2,8 @@ variables:
 - name: TeamName
 description: The name of the team using this module
 type: string
+
+variables:
+- name: TeamId
+description: The name of the team using this module
+type: string

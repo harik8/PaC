@@ -4,4 +4,5 @@ include "root" {
 
 input = {
    TeamName = "test"
+   TeamId = "1"
 }

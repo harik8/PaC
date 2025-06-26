@@ -15,6 +15,6 @@ variables:
     prompt: "Use single NAT Gateway?"
     default: false
 
-  - module_version:
-    prompt: "Terraform AWS VPC module version"
-    default: "v5.17.0"
+  # - module_version:
+  #   prompt: "Terraform AWS VPC module version"
+  #   default: "v5.17.0"

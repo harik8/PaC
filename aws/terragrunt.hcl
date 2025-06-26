@@ -1,21 +1,32 @@
+generate "provider" {
+  path      = "provider.tf"
+  if_exists = "overwrite"
+  contents  = <<EOF
 terraform {
-  source = "git::https://github.com/terraform-aws-modules/terraform-aws-vpc.git//?ref=v5.17.0"
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "5.100.0"
+    }
+  }
 }
 
-locals {
-#  azs = slice(data.aws_availability_zones.available.names, 0, 3)
-   azs = ["","",""]
+provider "aws" {
+    region = "eu-north-1"
+    assume_role {
+        role_arn     = "arn:aws:iam::155023195342:role/InfraAsCode"
+        session_name = "InfraAsCode"
+    }
+}
+EOF
 }
 
-inputs = {
-  name = "my-vpc"
-  cidr = "10.0.0.0/16"
-
-  azs                = local.azs
-  enable_nat_gateway = "false"
-  single_nat_gateway = "false"
-
-  private_subnets = [for k in range(0, length(local.azs)) : cidrsubnet("10.0.0.0/16", 8, k + 8)]
-  public_subnets  = [for k in range(0, length(local.azs)) : cidrsubnet("10.0.0.0/16", 12, k + 8)]
-  intra_subnets   = [for k in range(0, length(local.azs)) : cidrsubnet("10.0.0.0/16", 8, k + 12)]
+remote_state {
+  backend = "s3"
+  config = {
+    bucket         = "${path_relative_to_include()}-tofu-state"
+    key            = "${path_relative_to_include()}/tofu.tfstate"
+    region         = "eu-north-1"
+    encrypt        = true
+  }
 }

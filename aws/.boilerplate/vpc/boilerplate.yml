@@ -11,6 +11,5 @@ variables:
   - name: single_nat_gateway
     default: false
 
-  # - module_version:
-  #   prompt: "Terraform AWS VPC module version"
-  #   default: "v5.17.0"
+  - module_version:
+    default: "v5.17.0"

@@ -11,5 +11,5 @@ variables:
   - name: single_nat_gateway
     default: false
 
-  - name: module_version:
+  - name: module_version
     default: "v5.17.0"

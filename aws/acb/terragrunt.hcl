@@ -3,7 +3,7 @@ include "root" {
 }
 
 locals {
-  azs = ["","",""]
+  azs = ["", "", ""]
 }
 
 terraform {

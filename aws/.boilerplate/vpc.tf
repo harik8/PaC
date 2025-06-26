@@ -1,11 +1,11 @@
 module "vpc" {
   source = "github.com/terraform-aws-modules/terraform-aws-vpc?ref=v5.8.1"
 
-  cidr = {{ .cidr }}
+  cidr = "{{ .cidr }}"
 
   azs                = local.azs
-  enable_nat_gateway = {{ .enable_nat_gateway }}
-  single_nat_gateway = {{ .single_nat_gateway }}
+  enable_nat_gateway = "{{ .enable_nat_gateway }}"
+  single_nat_gateway = "{{ .single_nat_gateway }}"
 
   private_subnets = [for k in range(0, length(local.azs)) : cidrsubnet("{{ .cidr }}", 8, k + 8)]
   public_subnets  = [for k in range(0, length(local.azs)) : cidrsubnet("{{ .cidr }}", 12, k + 8)]

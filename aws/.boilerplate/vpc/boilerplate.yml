@@ -1,18 +1,14 @@
 variables:
   - name: name
-    prompt: "VPC name"
     default: "main"
 
   - name: cidr
-    prompt: "VPC CIDR"
     default: "10.0.0.0/16"
 
   - name: enable_nat_gateway
-    prompt: "Enable NAT Gateway?"
     default: false
 
   - name: single_nat_gateway
-    prompt: "Use single NAT Gateway?"
     default: false
 
   # - module_version:

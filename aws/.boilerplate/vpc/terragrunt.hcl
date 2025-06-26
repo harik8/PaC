@@ -2,10 +2,6 @@ terraform {
   source = "git::https://github.com/terraform-aws-modules/terraform-aws-vpc.git//?ref=v5.17.0"
 }
 
-include "root" {
-  path = find_in_parent_folders()
-}
-
 locals {
   azs = slice(data.aws_availability_zones.available.names, 0, 3)
 }

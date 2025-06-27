@@ -1,0 +1,6 @@
+---
+vpc:
+  version: "v5.17.0"
+  cidr: "10.80.0.0/16"
+  enable_nat_gateway: true
+  single_nat_gateway: true

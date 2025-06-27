@@ -2,7 +2,7 @@
 
 {{ $vpc := (ds "config").vpc }}
 module "vpc" {
-  source = "terraform-aws-modules/terraform-aws-vpc?ref={{ $vpc.version }}"
+  source = "github.com/terraform-aws-modules/terraform-aws-vpc?ref={{ $vpc.version }}"
 
   azs  = local.azs
   cidr = "{{ $vpc.cidr }}"

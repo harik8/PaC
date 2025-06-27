@@ -1,0 +1,8 @@
+---
+inputDir: ../../tmpl/
+outputMap: '{{ .in | strings.TrimSuffix ".tmpl" | printf "%s" }}'
+datasources:
+  config:
+    url: .vars.yaml
+
+#  gomplate --config .gomplate.yaml

@@ -19,11 +19,11 @@ from cdk.s3_stack import S3Stack
 
 app = cdk.App()
 TestStack(app, "h-cdk-test",
-  env=cdk.Environment(account='155023195342', region='eu-north-1'),
+  env=cdk.Environment(account='****', region='***'),
 )
 
 S3Stack(app, "h-tofu-state",
-  env=cdk.Environment(account='155023195342', region='eu-north-1'),
+  env=cdk.Environment(account='****', region='****'),
 )
 
 # vpc = VpcStack(app, f"{aws_account_name}-vpc",

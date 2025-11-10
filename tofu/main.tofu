@@ -8,7 +8,7 @@ provider "aws" {
 
   default_tags {
     tags = {
-      Environment = split("-", "${terraform.workspace}")[1]
+      Stage = split("-", "${terraform.workspace}")[1]
       OpenTofu    = true
     }
   }

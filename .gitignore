@@ -37,5 +37,8 @@ terraform.rc
 **/.env/*
 **/test/*
 
-# Ignore manifests folder
-**/manifests/*
+# Ignore test folder
+**/test/*
+
+# Ignore local lamba builds
+**/tofu/builds/*

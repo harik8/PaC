@@ -1,4 +1,7 @@
 ---
+ec2:
+  ssm_proxy:
+    create: false
 eks:
   version: v20.33.1
   create: false
@@ -9,6 +12,11 @@ eks:
         - namespace: "kube-system"
           labels:
             "eks.amazonaws.com/component": "coredns"
+rds:
+  psql:
+    create: false
+    instances:
+      one: {}
 vpc:
   version: v5.17.0
   create: true

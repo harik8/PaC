@@ -21,6 +21,17 @@ module "vpc" {
   private_subnet_ipv6_prefixes = [3, 4, 5]
   intra_subnet_ipv6_prefixes   = [6, 7, 8]
 
+  default_security_group_name = "${terraform.workspace}-default"
+  default_security_group_egress = [
+    {
+      from_port   = 0
+      to_port     = 0
+      protocol    = "-1"
+      cidr_blocks = "0.0.0.0/0"
+      description = "Allow all outbound traffic"
+    }
+  ]
+
   private_subnet_tags = {
     Name = "${terraform.workspace}-private"
   }

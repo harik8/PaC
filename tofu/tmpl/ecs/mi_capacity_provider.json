@@ -1,0 +1,18 @@
+{
+    "name": "${ecs_cluster}-mi-capacity-provider",
+    "cluster": "${ecs_cluster}",
+    "managedInstancesProvider": {
+        "infrastructureRoleArn": "arn:aws:iam::${account_id}:role/${ecs_cluster}-ecsInfrastructureRole-solr",
+        "instanceLaunchTemplate": {
+            "ec2InstanceProfileArn": "arn:aws:iam::${account_id}:instance-profile/${ecs_cluster}-ecs-solr-instance-profile",
+            "networkConfiguration": {
+                "subnets": "${subnet_ids}",
+                "securityGroups": "${security_group_ids}"
+            },
+            "storageConfiguration": {
+                "storageSizeGiB": 30
+            },
+            "monitoring": "basic"
+        }
+    }
+}

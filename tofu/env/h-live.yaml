@@ -2,21 +2,45 @@
 ec2:
   ssm_proxy:
     create: false
+<<<<<<< HEAD
+ecs:
+  version: v5.12.1
+  create: true
+efs:
+  create: false
+  version: v1.8.1
+=======
+>>>>>>> main
 eks:
   version: v20.33.1
   create: false
   cluster_version: 1.32
+  sc:
+    gp3: false
+    efs: false
   fargate_profile:
     - name: "core-dns"
       selectors:
         - namespace: "kube-system"
           labels:
             "eks.amazonaws.com/component": "coredns"
+<<<<<<< HEAD
+iam:
+  version: v5.60.0
+rds:
+  psql:
+    create: true
+    instances:
+      []
+security_group:
+  version: v5.3.1
+=======
 rds:
   psql:
     create: false
     instances:
       one: {}
+>>>>>>> main
 vpc:
   version: v5.17.0
   create: true

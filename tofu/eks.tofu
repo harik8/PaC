@@ -13,22 +13,22 @@ module "eks" {
   vpc_id                                   = module.vpc.vpc_id
   subnet_ids                               = module.vpc.private_subnets
 
-  # access_entries = {
-  #   aws_admin = {
-  #     kubernetes_groups = []
-  #     user_name         = "AWSAdmin"
-  #     principal_arn     = "arn:aws:iam::${var.account_id}:role/${var.pac_role}"
+  access_entries = {
+    aws_admin = {
+      kubernetes_groups = []
+      user_name         = "AWSAdmin"
+      principal_arn     = "arn:aws:iam::${var.account_id}:role/${var.pac_role}"
 
-  #     policy_associations = {
-  #       aws_admin = {
-  #         policy_arn = "arn:aws:eks::aws:cluster-access-policy/AmazonEKSClusterAdminPolicy"
-  #         access_scope = {
-  #           type = "cluster"
-  #         }
-  #       }
-  #     }
-  #   }
-  # }
+      policy_associations = {
+        aws_admin = {
+          policy_arn = "arn:aws:eks::aws:cluster-access-policy/AmazonEKSClusterAdminPolicy"
+          access_scope = {
+            type = "cluster"
+          }
+        }
+      }
+    }
+  }
 
   cluster_addons = {
     coredns = {

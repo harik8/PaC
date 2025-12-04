@@ -1,0 +1,12 @@
+{
+  "cluster": "${ecs_cluster}",
+  "serviceName": "solr-zk",
+  "taskDefinition": "solr-zk",
+  "desiredCount": 1,
+  "capacityProviderStrategy": [
+    {
+      "capacityProvider": "${ecs_cluster}-mi-capacity-provider",
+      "weight": 1
+    }
+  ]
+}

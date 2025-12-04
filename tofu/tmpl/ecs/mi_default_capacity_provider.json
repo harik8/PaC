@@ -1,0 +1,12 @@
+{
+    "cluster": "${ecs_cluster}",
+    "capacityProviders": [
+        "${ecs_cluster}-mi-capacity-provider"
+    ],
+    "defaultCapacityProviderStrategy": [
+        {
+            "capacityProvider": "${ecs_cluster}-mi-capacity-provider",
+            "weight": 100
+        }
+    ]
+}

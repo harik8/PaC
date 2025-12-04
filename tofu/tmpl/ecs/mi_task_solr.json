@@ -1,0 +1,52 @@
+{
+  "family": "solr-zk",
+  "executionRoleArn": "arn:aws:iam::${account_id}:role/${ecs_cluster}-ecs-task-exec-role",
+  "networkMode": "host",
+  "containerDefinitions": [
+    {
+      "name": "zookeeper",
+      "image": "public.ecr.aws/docker/library/zookeeper:3.6.4",
+      "cpu": 1,
+      "memory": 1024,
+      "essential": true,
+      "portMappings": [
+        { "containerPort": 2181, "protocol": "tcp" }
+      ],
+      "environment": [
+        { "name": "ZOO_STANDALONE_ENABLED", "value": "true" },
+        { "name": "ZOO_MY_ID", "value": "1" },
+        { "name": "ZOO_SERVERS", "value": "server.1=0.0.0.0:2888:3888" }
+      ],
+      "healthCheck": {
+        "command": ["CMD", "bash", "-c", "echo ruok | nc 127.0.0.1 2181 | grep imok"],
+        "interval": 10,
+        "timeout": 5,
+        "retries": 5,
+        "startPeriod": 20
+      }
+    },
+    {
+      "name": "solr",
+      "image": "public.ecr.aws/docker/library/solr:6.6.6",
+      "cpu": 1,
+      "memory": 2048,
+      "essential": true,
+      "portMappings": [
+        { "containerPort": 8983, "protocol": "tcp" }
+      ],
+      "environment": [
+        { "name": "ZK_HOST", "value": "127.0.0.1:2181" },
+        { "name": "SOLR_JAVA_MEM", "value": "-Xms1g -Xmx1g" }
+      ],
+      "dependsOn": [
+        {
+          "containerName": "zookeeper",
+          "condition": "HEALTHY"
+        }
+      ]
+    }
+  ],
+  "requiresCompatibilities": ["MANAGED_INSTANCES"],
+  "cpu": "2048",
+  "memory": "4096"
+}

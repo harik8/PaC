@@ -17,10 +17,10 @@ data "template_file" "ecs_mi_capacity_provider" {
   template = file("${path.module}/tmpl/ecs/mi_capacity_provider.json")
 
   vars = {
-    account_id        = var.account_id
-    ecs_cluster       = module.ecs.cluster_id
-    subnet_ids        = join("\", \"", module.vpc.private_subnets)
-    security_group_id = module.ecs_sg.security_group_id
+    account_id         = var.account_id
+    ecs_cluster        = module.ecs.cluster_id
+    subnet_ids         = join("\", \"", module.vpc.private_subnets)
+    security_group_ids = module.ecs_sg.security_group_id
   }
 }
 
@@ -33,7 +33,7 @@ data "template_file" "ecs_mi_default_capacity_provider" {
 }
 
 data "template_file" "ecs_service_solr" {
-  template = file("${path.module}/tmpl/ecs/mi_service_solr.json")
+  template = file("${path.module}/tmpl/ecs/mi_svc_solr.json")
 
   vars = {
     ecs_cluster = module.ecs.cluster_id

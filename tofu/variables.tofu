@@ -24,3 +24,8 @@ variable "db_master_password" {
   description = "The master password for the RDS database"
   sensitive   = true
 }
+
+variable "hp_dev_s3_bucket" {
+  description = "The S3 bucket name for hariprasad.dev website hosting"
+  default     = ""
+}

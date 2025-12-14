@@ -23,6 +23,8 @@ eks:
             "eks.amazonaws.com/component": "coredns"
 iam:
   version: v5.60.0
+  github_oidc:
+    repos: ["harik8/sandbox:*","harik8/hariprasad.dev:*"]
 rds:
   psql:
     create: true

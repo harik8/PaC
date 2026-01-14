@@ -99,7 +99,7 @@ module "aurora_clone_purge" {
   cloudwatch_logs_retention_in_days = 1
 
   environment_variables = {
-    STAGE          = split("-", "${terraform.workspace}")[1],
+    STAGE          = terraform.workspace,
     RETENTION_DAYS = "1"
   }
 
@@ -115,8 +115,10 @@ module "aurora_clone_purge_eventbridge" {
   source  = "terraform-aws-modules/eventbridge/aws"
   version = "v3.17.1"
 
-  create     = true
-  create_bus = false
+  create      = true
+  create_bus  = false
+  create_role = true
+  role_name   = "${terraform.workspace}-aurora-clone-purge-eventbridge"
 
   rules = {
     "${terraform.workspace}-aurora-clone-purge" = {

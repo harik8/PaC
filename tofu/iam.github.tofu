@@ -32,14 +32,18 @@ module "iam_github_hp_dev_s3_policy" {
         "s3:PutObject*"
       ],
       "Effect": "Allow",
-      "Resource": "arn:aws:s3:::${var.hp_dev_s3_bucket}/*"
+      "Resource": [
+          "arn:aws:s3:::${terraform.workspace}-portfolio-website/*"
+        ]
     },
     {
       "Action": [
         "s3:ListBucket"
       ],
       "Effect": "Allow",
-      "Resource": "arn:aws:s3:::${var.hp_dev_s3_bucket}"
+      "Resource": [
+          "arn:aws:s3:::${terraform.workspace}-portfolio-website"
+        ]
     }
   ]
 }

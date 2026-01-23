@@ -30,6 +30,8 @@ rds:
     create: false
     instances:
       []
+s3:
+  version: v4.11.0
 security_group:
   version: v5.3.1
 vpc:
